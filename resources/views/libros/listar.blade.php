@@ -18,7 +18,7 @@
        
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-        <div class="md:col-span-2 pt-4">
+        <div class="md:col-span-2 pt-0">
             <hr class="border-gray-100 dark:border-slate-700">
             <table class="w-full text-left border-collapse">
                 <thead>
@@ -30,6 +30,8 @@
                         <th class="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">editorial</th>
                         <th class="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">sinopsis</th>
                         <th class="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">portada</th>
+                        <th class="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Editar</th>
+                        <th class="px-4 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Borrar</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100 dark:divide-slate-700">
@@ -43,27 +45,33 @@
                             <td class="px-4 py-4 text-sm font-medium text-slate-400">{{ $libro->isbn }}</td>
                             <td class="px-4 py-4 text-sm font-medium text-slate-400">{{ $libro->editorial }}</td>
                             <td class="px-4 py-4 text-sm font-medium text-slate-400">{{ $libro->sinopsis }}</td>
-                            <td class="px-4 py-4 text-sm font-medium text-slate-400">{{ $libro->portada }}</td>
-                            <td class="px-4 py-4 text-center">
-                                
+                          
+                            <td class="px-4 py-4 text-sm text-slate-400 max-w-[120px] truncate">
+                                {{ $libro->portada }}
+                            </td>
+                         
                             <td class="px-3 py-3 text-center">
                                 <a href="{{ route('libros.editar', ['idLibro'=>$libro->id]) }}" class="inline-flex items-center p-2 text-indigo-600 bg-indigo-50 rounded-xl hover:bg-indigo-600 hover:text-white transition-all duration-200 dark:bg-slate-700 dark:text-indigo-400 dark:hover:bg-indigo-500 dark:hover:text-white group"
                             title="Editar libro">
                                  <svg xmlns="http://www.w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                                     </svg>
-
-                                    <td class="px-3 py-3 text-center">
-                            <a href="{{ route('libros.eliminar', ['idLibro'=>$libro->id]) }}" class="inline-flex items-center p-2 text-indigo-600 bg-indigo-50 rounded-xl hover:bg-indigo-600 hover:text-white transition-all duration-200 dark:bg-slate-700 dark:text-indigo-400 dark:hover:bg-indigo-500 dark:hover:text-white group"
-                            title="Eliminar libro">
-                                <svg xmlns="http://www.w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
-                                </svg>
-                            </a>
-                        </td>
-
                                 </a>
                             </td>
+                    
+                            <td class="px-3 py-3 text-center">
+                            <form action="{{ route('libros.eliminar', ['idLibro'=>$libro->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                    class="inline-flex items-center p-2 text-red-600 bg-red-50 rounded-xl hover:bg-red-600 hover:text-white transition-all duration-200">
+                                    🗑️
+                                </button>
+                            </form>
+                            </td>
+                            
+                        
 
                         </tr>
                     @endforeach 

@@ -43,9 +43,7 @@
         <input type="text" name="idLibro" id="idLibro" value="{{ $libro->id }}" hidden>
         @csrf
         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-            <div class="space-y-2">
-                <label for="nombre" class="block text-sm font-bold text-slate-700 dark:text-slate-300">{{ $libro->contenido }}</label>
-            </div><br>
+          
             <div class="space-y-2">
                 <input type="text" name="comentador" id="comentador" placeholder="Nombre..."
                     class="w-full px-4 py-3 rounded-xl border-gray-200 dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 transition-all outline-none shadow-sm">

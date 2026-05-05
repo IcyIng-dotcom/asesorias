@@ -43,7 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::post('libros/modificar', [LibroController::class, 'modificar'])
     ->name('libros.modificar');
     
-    Route::get('libros/eliminar/{idLibro}', [LibroController::class, 'eliminar'])
+    // Route::get('libros/eliminar/{idLibro}', [LibroController::class, 'eliminar'])
+    // ->name('libros.eliminar');
+    Route::delete('libros/eliminar/{idLibro}', [LibroController::class, 'eliminar'])
     ->name('libros.eliminar');
 
     Route::get('libros/detalle/{idLibro}', [LibroController::class, 'detalle'])
