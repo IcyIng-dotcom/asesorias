@@ -78,14 +78,6 @@ class LibroController extends Controller
         return to_route('libros.editar',['idLibro'=>$idLibro])->with(['success'=>'El libro se modificó exitosamente']);
     }
 
-    // public function eliminar($idLibro){
-    //     $libros = DB::table('libros')
-    //     ->where('id','=','$idLibro')
-    //     ->delete();
-
-    //     return view('libros.listar',['libros'=>$libros]);
-    // }
-
     public function eliminar($idLibro){
     DB::table('libros')
         ->where('id', $idLibro)
